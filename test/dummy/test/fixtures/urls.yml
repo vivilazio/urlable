@@ -1,0 +1,7 @@
+link1:
+  dst: an-url
+  urlable: prova (Article)
+
+link2:
+  dst: other-url
+  urlable: prova (Tag)
