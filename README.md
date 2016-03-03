@@ -1,8 +1,10 @@
 # Urlable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/urlable`. To experiment with that code, run `bin/console` for an interactive prompt.
+Urlable is a gem that creates a relation between an Url model and other multiple RoR ActiveRecord models that need an url that could change without losing the previous urls.
 
-TODO: Delete this and the text above, and describe your gem
+So old urls could be redirected to the active one.
+
+This gem was loosely inspired by a similar mechanism present on Drupal.
 
 ## Installation
 
@@ -22,7 +24,34 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create the Url model:
+
+```ruby
+create_table "urls", force: :cascade do |t|
+  t.integer "urlable_id", null: false
+  t.string  "urlable_type", null: false
+  t.string "dst", null: false
+end
+```
+
+then in the model that need url you currently need a String field named url:
+```ruby
+#  url               :string(255)
+class Article < ActiveRecord::Base
+  acts_as_urlable
+end
+```
+
+now you can:
+```ruby
+article = Article.create(title: "foo")
+article.link_url "bar"
+puts article.url
+puts article.urls
+article.link_url "foobar"
+puts article.url
+puts article.urls
+```
 
 ## Development
 
@@ -33,4 +62,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/urlable. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-

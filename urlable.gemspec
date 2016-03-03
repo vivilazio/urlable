@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Alessio Caradossi"]
   spec.email         = ["alessio@vivilazio.it"]
 
-  spec.summary       = %q{urlable is a gem that create a relation between a an Url table and other model that need an url that could change without losing the former urls.}
+  spec.summary       = %q{urlable is a gem that creates a relation between an Url model and other multiple RoR ActiveRecord models.}
 #  spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/vivilazio/urlable"
 
